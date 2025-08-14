@@ -7,10 +7,13 @@
 <body>
 
 <h1>Change the colors</h1>
-<input id="hex" type="text" placeholder="#ff0000">
+<input id="hex" type="text" value="rgb2" placeholder="#ff0000">
 <button id="btn">Apply</button>
+<button id="red">Red</button>
+
+<button id="off">off</button>
 <label class="switch">
-  <input type="checkbox">
+  <input id="switch" type="checkbox">
   <span class="slider round"></span>
 </label>
 
@@ -18,14 +21,34 @@
 
 <script>
 document.getElementById("btn").addEventListener("click", () => {
+    on()
+});
+
+document.getElementById("switch").addEventListener("click", () => {
+	if (!document.getElementById('switch').checked) {
+       fetch(`/off`)
+	}
+	else {
+on()
+	}
+});
+
+document.getElementById("btn").addEventListener("click", () => {
+    on()
+});
+
+function on() {
     const hex = document.getElementById("hex").value;
     fetch(`/run?hex=${encodeURIComponent(hex)}`)
         .then(res => res.text())
         .then(output => document.getElementById("output").innerText = output)
         .catch(console.error);
-});
+
+}
+
+
 </script>
 
 </body>
 </html>
-/html>
+
