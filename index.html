@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change the colors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Change the colors</h1>
+<input id="hex" type="text" placeholder="#ff0000">
+<button id="btn">Apply</button>
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+
+<pre id="output"></pre>
+
+<script>
+document.getElementById("btn").addEventListener("click", () => {
+    const hex = document.getElementById("hex").value;
+    fetch(`/run?hex=${encodeURIComponent(hex)}`)
+        .then(res => res.text())
+        .then(output => document.getElementById("output").innerText = output)
+        .catch(console.error);
+});
+</script>
+
+</body>
+</html>
+/html>
