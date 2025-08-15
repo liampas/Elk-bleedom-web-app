@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 from bluepy.btle import Peripheral
 import sys
+#import numpy as np
 
-# List all your LED strip MAC addresses
-MACS = [
-    "BE:27:20:00:36:8E",
-    "BE:27:BD:00:44:4D"
-]
 
-# Characteristic UUID for color control
+with open("devices.txt") as f:
+    MACS = [line.strip() for line in f if line.strip()]
+
+
+
+
+#Characteristic UUID for color control
 COLOR_CHAR_UUID = "0000fff3-0000-1000-8000-00805f9b34fb"
 
 # Predefined packets
@@ -21,7 +23,6 @@ COLOR_PACKETS = {
     "off":   "7e00050300000000ef",
     "red":   "7e000503ff000000ef"
 }
-
 def main():
     if len(sys.argv) < 2:
         print(f"Usage: {sys.argv[0]} <color>")
