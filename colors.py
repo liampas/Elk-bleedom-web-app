@@ -8,10 +8,49 @@ with open("devices.txt") as f:
 #Characteristic UUID for color control
 COLOR_CHAR_UUID = "0000fff3-0000-1000-8000-00805f9b34fb"
 
+#naming of the modes:
+#effects:
+# S = strobe flash
+# F = fade
+# #CF = # colors cross fade
+# CF = cross fade (2 colors)
+# #J = # colors jump
+#
+#colors:
+# r = red
+# g = green
+# b = blue
+# y = yellow
+# c = cyan
+# m = magenta
+# w = white
+
 # Predefined packets
 COLOR_PACKETS = {
-    "rgb":  "7e00038903000000ef",
-    "rgb2":  "7e00038a03000000ef",
+    "rgb": "7e00038a03000000ef",
+    "3j":  "7e00038703000000ef",
+    "7j":  "7e00038803000000ef",
+    "3cf": "7e00038903000000ef",
+    "7cf": "7e00038a03000000ef",
+    "rf":  "7e00038b03000000ef",
+    "gf":  "7e00038c03000000ef",
+    "bf":  "7e00038d03000000ef",
+    "yf":  "7e00038e03000000ef",
+    "cf":  "7e00038f03000000ef",
+    "mf":  "7e00039003000000ef",
+    "wf":  "7e00039103000000ef",
+    "rgcf":"7e00039203000000ef",
+    "rbcf":"7e00039303000000ef",
+    "gbcf":"7e00039403000000ef",
+    "7s":  "7e00039503000000ef",
+    "rs":  "7e00039603000000ef",
+    "gs":  "7e00039703000000ef",
+    "bs":  "7e00039803000000ef",
+    "ys":  "7e00039903000000ef",
+    "cs":  "7e00039a03000000ef",
+    "ms":  "7e00039b03000000ef",
+    "ws":  "7e00039c03000000ef",
+
     "red":   "7e000503ff000000ef",
     "green": "7e00050300ff0000ef",
     "blue":  "7e0005030000ff00ef",
