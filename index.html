@@ -7,11 +7,26 @@
 <body>
 
 <h1>Change the colors</h1>
-<input id="hex" type="text" value="rgb2" placeholder="#ff0000">
-<button id="btn">Apply</button>
-<button id="red">Red</button>
+<input id="hex" type="text" value="rgb2" placeholder="hex ff0000">
 
-<button id="off">off</button>
+<select name="modes" id="modes">
+	<option value="rgb2">rgb2</option>
+	<option value="rgb">rgb</option>
+	<option value="blue">blue</option>
+	<option value="green">green</option>
+	<option value="red">red</option>
+	<option value="off">off</option>
+</select>
+
+<button id="apply">Apply</button>
+<button class="btn red" onclick="document.getElementById('hex').value = 'red'"></button>
+<button class="btn green" onclick="document.getElementById('hex').value = 'green'"></button>
+<button class="btn blue" onclick="document.getElementById('hex').value = 'blue'"></button>
+<button class="btn yellow" onclick="document.getElementById('hex').value = 'yellow'"></button>
+<button class="btn orange" onclick="document.getElementById('hex').value = 'orange'"></button>
+<button class="btn purple" onclick="document.getElementById('hex').value = 'purple'"></button>
+<button class="btn" onclick="document.getElementById('hex').value = 'white'"></button>
+
 <label class="switch">
   <input id="switch" type="checkbox">
   <span class="slider round"></span>
@@ -20,7 +35,7 @@
 <pre id="output"></pre>
 
 <script>
-document.getElementById("btn").addEventListener("click", () => {
+document.getElementById("apply").addEventListener("click", () => {
     on()
 });
 
@@ -33,11 +48,12 @@ on()
 	}
 });
 
-document.getElementById("btn").addEventListener("click", () => {
+document.getElementById("apply").addEventListener("click", () => {
     on()
 });
 
 function on() {
+	document.getElementById("switch").checked = true;
     const hex = document.getElementById("hex").value;
     fetch(`/run?hex=${encodeURIComponent(hex)}`)
         .then(res => res.text())
@@ -45,7 +61,6 @@ function on() {
         .catch(console.error);
 
 }
-
 
 </script>
 

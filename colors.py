@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
 from bluepy.btle import Peripheral
 import sys
-#import numpy as np
-
 
 with open("devices.txt") as f:
     MACS = [line.strip() for line in f if line.strip()]
-
-
-
 
 #Characteristic UUID for color control
 COLOR_CHAR_UUID = "0000fff3-0000-1000-8000-00805f9b34fb"
@@ -17,11 +12,15 @@ COLOR_CHAR_UUID = "0000fff3-0000-1000-8000-00805f9b34fb"
 COLOR_PACKETS = {
     "rgb":  "7e00038903000000ef",
     "rgb2":  "7e00038a03000000ef",
+    "red":   "7e000503ff000000ef",
     "green": "7e00050300ff0000ef",
     "blue":  "7e0005030000ff00ef",
+    "yellow":  "7e000503ffff0000ef",
+    "orange":  "7e000503ffa50000ef",
+    "purple":  "7e000503ff00ff00ef",
     "white": "7e000503ffffff00ef",
     "off":   "7e00050300000000ef",
-    "red":   "7e000503ff000000ef"
+    
 }
 def main():
     if len(sys.argv) < 2:

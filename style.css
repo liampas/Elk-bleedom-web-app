@@ -59,4 +59,16 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-} 
+}
+
+.btn {
+  border-radius: 50%;
+  border: full;
+  padding: 25px 25px;
+}
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+.yellow {background-color: yellow;}
+.orange {background-color: orange;}
+.purple {background-color: purple;}
