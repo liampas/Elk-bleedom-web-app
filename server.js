@@ -25,7 +25,11 @@ app.get('/off', (req, res) => {
     });
 });
 
-
+const { spawn } = require('child_process');
+app.get('/scan', (req, res) => {
+    spawn(`./scan.sh`, { detached: true, stdio: 'ignore' }).unref();
+	res.send('scan started');
+});
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
