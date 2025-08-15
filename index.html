@@ -10,12 +10,27 @@
 <input id="hex" type="text" value="rgb2" placeholder="hex ff0000">
 
 <select name="modes" id="modes">
-	<option value="rgb2">rgb2</option>
-	<option value="rgb">rgb</option>
-	<option value="blue">blue</option>
-	<option value="green">green</option>
-	<option value="red">red</option>
-	<option value="off">off</option>
+	<option value="">Select a mode</option>
+	<option value="rgb">rgb fade</option>
+	<option value="3j">three color jump</option>
+	<option value="7j">seven color jump</option>
+	<option value="3cf">three color cross fade</option>
+	<option value="7cf">seven color cross fade</option>
+	<option value="rf">red fade</option>
+	<option value="gf">green fade</option>
+	<option value="bf">blue fade</option>
+	<option value="yf">yellow fade</option>
+	<option value="cf">cyan fade</option>
+	<option value="rgcf">red green cross fade</option>
+	<option value="rbcf">red blue cross fade</option>
+	<option value="gbcf">green blue cross fade</option>
+	<option value="7s">seven color strobe flash</option>
+	<option value="rs">red strobe flash</option>
+	<option value="gs">green strobe flash</option>
+	<option value="ys">yellow strobe flash</option>
+	<option value="cs">cyan strobe flash</option>
+	<option value="ms">magenta strobe flash</option>
+	<option value="ws">white strobe flash</option>
 </select>
 
 <p id="hex-code"></p>
@@ -44,6 +59,25 @@
 document.getElementById("apply").addEventListener("click", () => {
     on()
 });
+
+document.getElementById("modes").addEventListener("click", () => {
+	document.getElementById('hex').value = document.getElementById('modes').value
+});
+
+document.getElementById("hex").addEventListener("input", function() {
+	var match = false;
+	for (var i = 0; i < document.getElementById("modes").options.length; i++) {
+		if (document.getElementById("modes").options[i].value.toLowerCase() === this.value.trim().toLowerCase()) {
+			match = true;
+			break;
+		}
+	}
+	if (!match && this.value.trim() !== "") {
+		document.getElementById("modes").value = "";
+	}
+});
+
+
 
 document.getElementById("switch").addEventListener("click", () => {
 	if (!document.getElementById('switch').checked) {
