@@ -243,11 +243,15 @@ canvas {
 }
 
 .topnav {
-	overflow: hidden;
-	padding: 20px 30px;
-
-.right {
-    float: right;
+    overflow: hidden;
+    padding: 20px 30px;
+   
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    align-items: center;
+    -webkit-align-items: center;
 }
 
 
