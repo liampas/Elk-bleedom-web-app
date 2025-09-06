@@ -3,76 +3,74 @@
 	<head>
 		<title>RGB</title>
 		<link rel="stylesheet" href="style.css">
-		<link rel="icon" href="/icons/favicon.png">
+		<link rel="icon" href="../icons/favicon.png">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="../icons/favicon.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 	</head>
 	<body>
 
-		<h1>Change the colors</h1>
+		<div class="topnav">
+			<img id="spinButton" src="../icons/refresh-page-option.png" alt="scan for devices" style="width:35px;height:35px;">
+
+			<div class="right">
+				<label class="switch">
+					<input id="switch" type="checkbox">
+					<span class="slider round"></span>
+				</label>
+			</div>
+		</div>
+		<div class="wheel-container">
+			<canvas id="color-wheel" width="300" height="300"></canvas>
+		</div>
+
+		<div class="modes-container">
+			<select name="modes" id="modes">
+				<option value="">Select a mode</option>
+				<option value="rgb">rgb fade</option>
+				<option value="3j">three color jump</option>
+				<option value="7j">seven color jump</option>
+				<option value="3cf">three color cross fade</option>
+				<option value="7cf">seven color cross fade</option>
+				<option value="rf">red fade</option>
+				<option value="gf">green fade</option>
+				<option value="bf">blue fade</option>
+				<option value="yf">yellow fade</option>
+				<option value="cf">cyan fade</option>
+				<option value="rgcf">red green cross fade</option>
+				<option value="rbcf">red blue cross fade</option>
+				<option value="gbcf">green blue cross fade</option>
+				<option value="7s">seven color strobe flash</option>
+				<option value="rs">red strobe flash</option>
+				<option value="gs">green strobe flash</option>
+				<option value="ys">yellow strobe flash</option>
+				<option value="cs">cyan strobe flash</option>
+				<option value="ms">magenta strobe flash</option>
+				<option value="ws">white strobe flash</option>
+			</select>
+		</div>
+		<div class="wheel-container">
+			<button class="btn rgb" onclick="document.getElementById('hex').value = 'rgb'"></button>
+			<button class="btn red" onclick="document.getElementById('hex').value = 'red'"></button>
+			<button class="btn green" onclick="document.getElementById('hex').value = 'green'"></button>
+			<button class="btn blue" onclick="document.getElementById('hex').value = 'blue'"></button>
+		</div>
+		<div class="wheel-container">
+			<button class="btn yellow" onclick="document.getElementById('hex').value = 'yellow'"></button>
+			<button class="btn orange" onclick="document.getElementById('hex').value = 'orange'"></button>
+			<button class="btn purple" onclick="document.getElementById('hex').value = 'purple'"></button>
+			<button class="btn white" onclick="document.getElementById('hex').value = 'white'"></button>
+		</div>
+
+
+		<div class="bottom wheel-container">
 		<input id="hex" type="text" value="rgb2" placeholder="hex ff0000">
+			<button class="glow-on-hover" id="apply">Apply</button>
+		</div>
+		<div id="output"></div>
 
-		<select name="modes" id="modes">
-			<option value="">Select a mode</option>
-			<option value="rgb">rgb fade</option>
-			<option value="3j">three color jump</option>
-			<option value="7j">seven color jump</option>
-			<option value="3cf">three color cross fade</option>
-			<option value="7cf">seven color cross fade</option>
-			<option value="rf">red fade</option>
-			<option value="gf">green fade</option>
-			<option value="bf">blue fade</option>
-			<option value="yf">yellow fade</option>
-			<option value="cf">cyan fade</option>
-			<option value="rgcf">red green cross fade</option>
-			<option value="rbcf">red blue cross fade</option>
-			<option value="gbcf">green blue cross fade</option>
-			<option value="7s">seven color strobe flash</option>
-			<option value="rs">red strobe flash</option>
-			<option value="gs">green strobe flash</option>
-			<option value="ys">yellow strobe flash</option>
-			<option value="cs">cyan strobe flash</option>
-			<option value="ms">magenta strobe flash</option>
-			<option value="ws">white strobe flash</option>
-		</select>
-
-		<p id="hex-code"></p>
-
-		<button id="apply">Apply</button>
-		<button id="scanButton" class="button">Scan for leds
-			<div class="loader" id="loader">
-		</button>
-
-
-		<button class="btn rgb" onclick="document.getElementById('hex').value = 'rgb'"></button>
-		<button class="btn red" onclick="document.getElementById('hex').value = 'red'"></button>
-		<button class="btn green" onclick="document.getElementById('hex').value = 'green'"></button>
-		<button class="btn blue" onclick="document.getElementById('hex').value = 'blue'"></button>
-		<button class="btn yellow" onclick="document.getElementById('hex').value = 'yellow'"></button>
-		<button class="btn orange" onclick="document.getElementById('hex').value = 'orange'"></button>
-		<button class="btn purple" onclick="document.getElementById('hex').value = 'purple'"></button>
-		<button class="btn white" onclick="document.getElementById('hex').value = 'white'"></button>
-
-		<label class="switch">
-			<input id="switch" type="checkbox">
-			<span class="slider round"></span>
-		</label>
-
-		<canvas id="color-wheel" width="300" height="300"></canvas>
-		<div id="selected-color"></div>
-
-
-		<pre id="output"></pre>
-
-
-
-		<script type="text/javascript">
-			if (screen.width <= 767) {
-				document.location.href = "/mobile";
-			}
-
-			if (screen.width >= 767) {
-				document.location.href = "/mobile";
-			}
-		</script>
 
 		<script>
 			document.getElementById("apply").addEventListener("click", () => {
@@ -100,10 +98,6 @@
 				}
 			});
 
-			document.getElementById("apply").addEventListener("click", () => {
-				on()
-			});
-
 			function on() {
 				document.getElementById("switch").checked = true;
 				const hex = document.getElementById("hex").value;
@@ -119,7 +113,6 @@
 		<script>
 			const canvas = document.getElementById('color-wheel');
 			const ctx = canvas.getContext('2d');
-			const selectedColor = document.getElementById('selected-color');
 			const hexCode = document.getElementById('hex');
 
 			function drawColorWheel() {
@@ -174,7 +167,6 @@
 				const y = e.clientY - rect.top;
 				const pixel = ctx.getImageData(x, y, 1, 1).data;
 				const color = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
-				selectedColor.style.backgroundColor = color;
 
 				const hex = 'hex ' + (
 					(1 << 24) |
@@ -189,31 +181,17 @@
 			drawColorWheel();
 		</script>
 		<script>
-			const loadButton = 
-				document.getElementById('scanButton');
-			const loader = 
-				document.getElementById('loader');
-			const demoForm = 
-				document.getElementById('my-form');
+			const button = document.getElementById('spinButton');
 
-			loadButton.addEventListener('click', () => {
-
+			button.addEventListener('click', () => {
+				button.classList.add('spin');
 				fetch(`/scan`)
-				// Disable the button
-				// and prevent further clicks
-				loadButton.disabled = true;
 
-				loader.style.display = 'inline-block';
-				setTimeout(() => {
-
-					// Restore the button state 
-					//after the operation is done
-					loadButton.disabled = false;
-					loader.style.display = 'none';
-					demoForm.reset();
-				}, 5000);
+				// Remove the class after the animation ends
+				button.addEventListener('animationend', () => {
+					button.classList.remove('spin');
+				}, { once: true });
 			});
-
 
 		</script>
 
