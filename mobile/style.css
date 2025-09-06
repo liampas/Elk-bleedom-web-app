@@ -1,0 +1,259 @@
+body {
+	background: #141b3d;
+	font-family: Arial, Halvetica, sans-serif;
+}
+/* The switch - the box around the slider */
+.switch {
+	position: relative;	
+	align-item: center;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+/* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked + .slider {
+	background-color: #2196F3;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+.bottom {
+    bottom: 0; /* Aligns to the bottom */
+	padding: 40px 40px;
+
+}
+.modes-container {
+  display: grid;
+  place-items: center;   /* centers horizontally + vertically within the div */
+  width: 100%;
+  margin-top: 20px;
+	padding: 10px 0px;
+}
+#modes {
+ height: 150%; 
+	width: 50% ;  /* override any 100% */
+  float: none !important;   /* kill floats */
+  display: inline-block;
+}
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+.yellow {background-color: yellow;}
+.orange {background-color: orange;}
+.purple {background-color: purple;}
+.rgb {
+	background: linear-gradient(155deg, #020024 0%, red 0%, #ffab00 12%, #e0ff00 24%, #00e4ff 48%, #0005ff 60%, #fe00e7 72%, red 84%, #ffa200 96%);
+}
+.btn {
+	margin: 1em;
+	position: relative;
+	border-radius: 55%;
+	border: full;
+	padding: 20px;
+}
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+.applybutton {
+	background-color: #04AA6D; /* Green */
+	border: none;
+	border-radius: 25px;
+	color: black;
+	font-weight: bold;
+	padding: 25px 70px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	background: linear-gradient(155deg, #F1A8FF 0%, red 0%, #FF81B3 12%, #FFD17B 24%, #B5FF92 48%, #8BFFD9 60%, #6BA9FF 72%, #BB6BFF 84%, #5448FF 96%);
+	backdrop-filter: blur(9px);
+}
+.applybutton:focus {
+	background-color: #04AA6D; /* Green */
+	border: none;
+	border-radius: 25px;
+	color: black;
+	padding: 25px 70px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	background: linear-gradient(155deg, #F1A8FF 0%, red 0%, #FF81B3 12%, #FFD17B 24%, #B5FF92 48%, #8BFFD9 60%, #6BA9FF 72%, #BB6BFF 84%, #5448FF 96%);
+	backdrop-filter: blur(9px);
+}
+.red::before,
+.green::before,
+.blue::before,
+.yellow::before,
+.orange::before,
+.purple::before,
+.white::before,
+.rgb::before
+{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	filter: blur(8px);
+	position: absolute;
+	border-radius: 50%;
+}
+
+canvas {
+	border-radius: 50%;
+	cursor: crosshair;
+}
+
+.wheel-container {
+	 display: flex;
+    justify-content: center;
+}
+#selected-color {
+	margin-top: 20px;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	border-radius: 50%;
+	border: 2px solid #333;
+}
+
+#spinButton {
+  transition: transform 0.5s ease;
+}
+
+.spin {
+  animation: rotate 5s linear ;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1800deg);
+  }
+}
+
+.topnav {
+    overflow: hidden;
+    padding: 20px 30px;
+   
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    align-items: center;
+    -webkit-align-items: center;
+}
+
+
+
+
