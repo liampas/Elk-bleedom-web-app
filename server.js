@@ -31,5 +31,5 @@ app.get('/scan', (req, res) => {
 	res.send('scan started');
 });
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+app.listen(9999, () => console.log('Server running on http://localhost:9999'));
 
